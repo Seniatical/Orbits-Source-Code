@@ -37,10 +37,10 @@ class Orbit(commands.AutoShardedBot):
     async def on_ready(self):
         print('All cogs have been loaded!')
         
-    async def on_message(self, message):
-        if self.AUTOMOD != True:
-            exec(AUTO.message_event)
-            return
+    # async def on_message(self, message):
+    #     if self.AUTOMOD != True:
+    #         exec(AUTO.message_event)
+    #         return
         
 if __name__ == '__main__':
     bot = Orbit()
