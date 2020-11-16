@@ -25,6 +25,12 @@ class Orbit(command.AutoShardedBot):
                 
         self.launch_time = datetime.datetime.utcnow()
         
+    async def on_connect(self):
+        print('{} has connected to discords endpoint.'.format(self.user))
+        
+    async def on_ready(self):
+        print('All cogs have been loaded!')
+        
 if __name__ == '__main__':
     bot = Oribit()
     bot.run('')
