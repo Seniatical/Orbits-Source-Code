@@ -3,6 +3,7 @@ from discord.ext import commands
 import traceback
 import datetime
 import os
+import AUTO
 
 desc = """Orbit. The one bot to replace many!"""
 owners = [475357293949485076, 338999581474029578, 464694683231191042, 482179909633048597, 523580106548183048, 564881596990357533, 724982934154510407]
@@ -25,12 +26,18 @@ class Orbit(commands.AutoShardedBot):
                 print(error_traceback + '\n\n')
                 
         self.launch_time = datetime.datetime.utcnow()
+        self.AUTOMOD = False
         
     async def on_connect(self):
         print('{} has connected to discords endpoint.'.format(self.user))
         
     async def on_ready(self):
         print('All cogs have been loaded!')
+        
+    async def on_message(self, message):
+        if self.AUTOMOD != False:
+            exec(AUTO.message_event)
+            return
         
 if __name__ == '__main__':
     bot = Orbit()
