@@ -9,7 +9,7 @@ owners = [475357293949485076, 338999581474029578, 464694683231191042, 4821799096
 allowed_mentions = discord.AllowedMentions(everyone=False, roles=False, users=True)
 intents = discord.Intents.all()
 
-class Orbit(command.AutoShardedBot):
+class Orbit(commands.AutoShardedBot):
     def __init__(self):
         super().__init__(
             command_prefix=PREFIX,case_insensitive=True,
