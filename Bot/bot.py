@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import traceback
 import datetime
+import os
 
 class Orbit(command.AutoShardedBot):
     def __init__(self):
@@ -32,5 +33,5 @@ class Orbit(command.AutoShardedBot):
         print('All cogs have been loaded!')
         
 if __name__ == '__main__':
-    bot = Oribit()
+    bot = Orbit()
     bot.run('')
