@@ -19,11 +19,14 @@ class Orbit(commands.AutoShardedBot):
             help_command=None,description=desc,owner_ids=owners,
         )
         for file in os.listdir('./cogs'):
-            try:
-                self.load_extension('cogs.{}'.format(file[:-3]))
-            except Exception as error:
-                error_traceback = traceback.format_exception(etype=type(error), value=error, tb=error.__traceback__)
-                print(error_traceback + '\n\n')
+            if file == "__pycache__":
+                return
+            else:
+                try:
+                    self.load_extension('cogs.{}'.format(file[:-3]))
+                except Exception as error:
+                    error_traceback = traceback.format_exception(etype=type(error), value=error, tb=error.__traceback__)
+                    print(error_traceback + '\n\n')
                 
         self.launch_time = datetime.datetime.utcnow()
         self.AUTOMOD = False
@@ -34,10 +37,10 @@ class Orbit(commands.AutoShardedBot):
     async def on_ready(self):
         print('All cogs have been loaded!')
         
-    async def on_message(self, message):
-        if self.AUTOMOD != False:
-            exec(AUTO.message_event)
-            return
+    # async def on_message(self, message):
+    #     if self.AUTOMOD != False:
+    #         exec(AUTO.message_event)
+    #         return
         
 if __name__ == '__main__':
     bot = Orbit()
