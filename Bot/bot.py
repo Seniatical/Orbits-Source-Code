@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import traceback
 import datetime
+import os
 
 desc = """Orbit. The one bot to replace many!"""
 owners = [475357293949485076, 338999581474029578, 464694683231191042, 482179909633048597, 523580106548183048, 564881596990357533, 724982934154510407]
@@ -31,5 +32,5 @@ class Orbit(command.AutoShardedBot):
         print('All cogs have been loaded!')
         
 if __name__ == '__main__':
-    bot = Oribit()
+    bot = Orbit()
     bot.run('')
