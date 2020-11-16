@@ -32,4 +32,4 @@ class Orbit(command.AutoShardedBot):
         
 if __name__ == '__main__':
     bot = Oribit()
-    bot.run('Nzc3OTc2OTA5MTg3MTIxMTY0.X7LRdQ.jLc3ANEwbalN1YjJoceiVTuoqiE')
+    bot.run('')
