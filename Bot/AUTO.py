@@ -24,7 +24,7 @@ def is_raid(channel):
             continue
         if message.created_at.datetime.datetime.utcnow() - datetime.timedelta(seconds=2) == x.datetime.timedelta(seconds=2):
             if x.author.id == message.author.id or x.default_avatar == True and message.author.default_avatar == True:
-                if x.author.created_at.datetime.strftime("%Y") == if message.author.created_at.datetime.strftime("%Y"):
+                if x.author.created_at.datetime.strftime("%Y") == message.author.created_at.datetime.strftime("%Y"):
                     return True
                 return False
             return False
