@@ -1,2 +1,4 @@
 __pycache__
 configs
+*.md
+.LICENSE 
