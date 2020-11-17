@@ -4,12 +4,18 @@ import traceback
 import datetime
 import os
 import AUTO
+import json
+from pathlib import Path
+
+cwd = Path(__file__).parents[0]
+cwd = str(cwd)
 
 desc = """Orbit. The one bot to replace many!"""
 owners = [475357293949485076, 338999581474029578, 464694683231191042, 482179909633048597, 523580106548183048, 564881596990357533, 724982934154510407]
 allowed_mentions = discord.AllowedMentions(everyone=False, roles=False, users=True)
 intents = discord.Intents.all()
 PREFIX = '?'
+secret = json.load(open(cwd+'/configs/secret.json'))
 
 class Orbit(commands.AutoShardedBot):
     def __init__(self):
@@ -43,4 +49,4 @@ class Orbit(commands.AutoShardedBot):
         
 if __name__ == '__main__':
     bot = Orbit()
-    bot.run('')
+    bot.run(secret['token'])
