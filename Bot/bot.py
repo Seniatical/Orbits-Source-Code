@@ -43,4 +43,4 @@ class Orbit(commands.AutoShardedBot):
         
 if __name__ == '__main__':
     bot = Orbit()
-    bot.run('Nzc3OTc2OTA5MTg3MTIxMTY0.X7LRdQ.XSl5h7_1_nGfKUTwTw0VHqQeqh4')
+    bot.run('')
