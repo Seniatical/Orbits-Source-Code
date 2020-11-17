@@ -25,13 +25,22 @@ class Orbit(commands.AutoShardedBot):
             help_command=None,description=desc,owner_ids=owners,
         )
         for file in os.listdir('./cogs'):
-            if file == "__pycache__":
-                return
-            else:
-                self.load_extension('cogs.{}'.format(file[:-3]))
-                # except Exception as error:
-                #     error_traceback = traceback.format_exception(etype=type(error), value=error, tb=error.__traceback__)
-                #     print(error_traceback + '\n\n')
+            if filename.endswith('.py'):
+                try:
+                    self.load_extension('cogs.{}'.format(file[:-3]))
+                except Exception as error:
+                    error_traceback = traceback.format_exception(etype=type(error), value=error, tb=error.__traceback__)
+                    print(error_traceback + '\n\n')
+
+        @self.command(aliases=['ut'])
+        @commands.cooldown(1, 10, BucketType.user)
+        async def uptime(ctx):
+            delta_uptime = datetime.datetime.utcnow() - bot.launch_time
+            hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
+            minutes, seconds = divmod(remainder, 60)
+            days, hours = divmod(hours, 24)
+            embed = discord.Embed(title = "Uptime:",description = f"Days: {days}\nHours: {hours}\nMins: {minutes}", color = discord.Colour.red())
+            await ctx.send(embed = embed)
                 
         self.launch_time = datetime.datetime.utcnow()
         self.AUTOMOD = False
