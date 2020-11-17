@@ -1,13 +1,14 @@
+import datetime
 from discord.ext import commands
 import string
 from profanity_filter import ProfanityFilter
 pf = ProfanityFilter()
-import datetime
 
-## Run pip install spacy && python -m spacy download en
-## This is to prevent any errors
+# Run pip install spacy && python -m spacy download en
+# This is to prevent any errors
 
-alpha = (list(string.ascii_lowercase)) 
+alpha = (list(string.ascii_lowercase))
+
 
 def profantiy(message):
     message = message.lower()
@@ -15,6 +16,7 @@ def profantiy(message):
     if x != message:
         return True
     return False
+
 
 def is_raid(channel):
     x = None
@@ -29,7 +31,8 @@ def is_raid(channel):
                 return False
             return False
         return False
-    
+
+
 message_event = """
 try:
     if profanity(message.content) != False:
@@ -75,3 +78,4 @@ except Exception as error:
 """
 
 
+# test
