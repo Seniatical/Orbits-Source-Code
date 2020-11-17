@@ -3,7 +3,7 @@ from discord.ext import commands
 import traceback
 import datetime
 import os
-import AUTO
+import AUTO, INVITE
 import json
 from pathlib import Path
 
@@ -31,6 +31,9 @@ class Orbit(commands.AutoShardedBot):
                 except Exception as error:
                     error_traceback = traceback.format_exception(etype=type(error), value=error, tb=error.__traceback__)
                     print(error_traceback + '\n\n')
+        self.TRACKER = INVITE.TRACKER(self)
+        self.launch_time = datetime.datetime.utcnow()
+        self.AUTOMOD = False
 
         @self.command(aliases=['ut'])
         @commands.cooldown(1, 10, BucketType.user)
@@ -41,20 +44,27 @@ class Orbit(commands.AutoShardedBot):
             days, hours = divmod(hours, 24)
             embed = discord.Embed(title = "Uptime:",description = f"Days: {days}\nHours: {hours}\nMins: {minutes}", color = discord.Colour.red())
             await ctx.send(embed = embed)
-                
-        self.launch_time = datetime.datetime.utcnow()
-        self.AUTOMOD = False
         
     async def on_connect(self):
         print('{} has connected to discords endpoint.'.format(self.user))
         
+    '''
+    INVITE TRACKING SECTION
+    DONT MODIFY
+    '''
     async def on_ready(self):
+        await self.TRACKER.ALL_INVITES()
         print('All cogs have been loaded!')
-        
-    # async def on_message(self, message):
-    #     if self.AUTOMOD != True:
-    #         exec(AUTO.message_event)
-    #         return
+    async def on_guild_join(self, guild):
+        await self.TRACKER.CREATE_GUILD_INVITES(guild)
+    async def on_guild_remove(self, guild):
+        await self.TRACKER.REMOVE_INVITES(guild)
+    async def on_invite_create(self, invite):
+        await self.TRACKER.UPDATE_INVITE(invite)
+    async def on_invite_delete(self, invite):
+        await self.TRACKER.REMOVE_INVITE(invite)
+    async def on_member_join(self, member):
+        await self.TRACKER.GET_INVITER(member)
         
 if __name__ == '__main__':
     bot = Orbit()
