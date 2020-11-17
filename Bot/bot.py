@@ -22,11 +22,10 @@ class Orbit(commands.AutoShardedBot):
             if file == "__pycache__":
                 return
             else:
-                try:
-                    self.load_extension('cogs.{}'.format(file[:-3]))
-                except Exception as error:
-                    error_traceback = traceback.format_exception(etype=type(error), value=error, tb=error.__traceback__)
-                    print(error_traceback + '\n\n')
+                self.load_extension('cogs.{}'.format(file[:-3]))
+                # except Exception as error:
+                #     error_traceback = traceback.format_exception(etype=type(error), value=error, tb=error.__traceback__)
+                #     print(error_traceback + '\n\n')
                 
         self.launch_time = datetime.datetime.utcnow()
         self.AUTOMOD = False
@@ -44,4 +43,4 @@ class Orbit(commands.AutoShardedBot):
         
 if __name__ == '__main__':
     bot = Orbit()
-    bot.run('')
+    bot.run('Nzc3OTc2OTA5MTg3MTIxMTY0.X7LRdQ.XSl5h7_1_nGfKUTwTw0VHqQeqh4')
