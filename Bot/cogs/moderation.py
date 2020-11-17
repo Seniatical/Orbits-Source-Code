@@ -22,7 +22,7 @@ class TEST(commands.Cog):
             title="Kick",
             description=f"{user.mention} has been kicked from {ctx.guild} by {ctx.author} with the reason of: \"{reason}\""
         )
-        embed.set_footer(text="Command done by: <@>")
+        embed.set_footer(text="Command done by: <@338999581474029578>")
         await user.kick(reason=reason)
 
 
