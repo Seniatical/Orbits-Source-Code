@@ -25,22 +25,24 @@ class Orbit(commands.AutoShardedBot):
             help_command=None,description=desc,owner_ids=owners,
         )
         for file in os.listdir('./cogs'):
-            if filename.endswith('.py'):
+            if file == "__pycache__":
+                return
+            else:
                 try:
                     self.load_extension('cogs.{}'.format(file[:-3]))
                 except Exception as error:
                     error_traceback = traceback.format_exception(etype=type(error), value=error, tb=error.__traceback__)
-                    print(error_traceback + '\n\n')
+                    print(error_traceback + '/n/n')
         self.TRACKER = INVITE.TRACKER(self)
         self.launch_time = datetime.datetime.utcnow()
         self.AUTOMOD = False
 
         @self.command(aliases=['ut'])
-        @commands.cooldown(1, 10, BucketType.user)
-        async def uptime(ctx):
+        @commands.cooldown(1, 10, commands.BucketType.user) # you forgot to add commands. before BucketType :D
+        async def uptime(ctx): # Unused variable "uptime"
             delta_uptime = datetime.datetime.utcnow() - bot.launch_time
             hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
-            minutes, seconds = divmod(remainder, 60)
+            minutes, seconds = divmod(remainder, 60) # Unused variable "seconds"
             days, hours = divmod(hours, 24)
             embed = discord.Embed(title = "Uptime:",description = f"Days: {days}\nHours: {hours}\nMins: {minutes}", color = discord.Colour.red())
             await ctx.send(embed = embed)
@@ -53,7 +55,7 @@ class Orbit(commands.AutoShardedBot):
     DONT MODIFY
     '''
     async def on_ready(self):
-        await self.TRACKER.ALL_INVITES()
+        await self.TRACKER.ALL_INVITES() #AttributeError: 'Orbit' object has no attribute 'TRACKER'
         print('All cogs have been loaded!')
     async def on_guild_join(self, guild):
         await self.TRACKER.CREATE_GUILD_INVITES(guild)
@@ -61,11 +63,14 @@ class Orbit(commands.AutoShardedBot):
         await self.TRACKER.REMOVE_INVITES(guild)
     async def on_invite_create(self, invite):
         await self.TRACKER.UPDATE_INVITE(invite)
+        """^You forgot an S TRACKER.UPDATE_INVITE(S)?"""
+        
     async def on_invite_delete(self, invite):
         await self.TRACKER.REMOVE_INVITE(invite)
+        """^You forgot an S TRACKER.REMOVE_INVITE(S)?"""
     async def on_member_join(self, member):
         await self.TRACKER.GET_INVITER(member)
         
 if __name__ == '__main__':
     bot = Orbit()
-    bot.run(secret['token'])
+    bot.run(secret['discord']['token'])
