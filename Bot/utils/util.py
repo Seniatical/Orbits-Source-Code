@@ -8,3 +8,7 @@ class Pag(Paginator):
             await self.page.clear_reactions()
         except discord.HTTPException:
             pass
+        
+"""
+This is for the help command do not modify or delete
+"""
