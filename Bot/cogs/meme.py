@@ -32,6 +32,7 @@ class memes(commands.Cog):
         colour = discord.Colour.dark_theme()
             
         embed = discord.Embed(title = name, colour=colour)
+        embed.set_footer(text="Original post by u/"+submission.author.name)
         embed.set_image(url = url)
         await ctx.send(embed=embed)
         
