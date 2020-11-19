@@ -2,7 +2,9 @@ import praw
 import discord
 import random
 from discord.ext import commands
+from discord.ext.commands import BucketType
 import json
+
 
 secret = json.load(open('../Bot/configs/secret.json')) # getting API key and acc details from json file
 
@@ -18,8 +20,8 @@ class memes(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
-    
-    @commands.command(description="Dankest of them memes")
+    @commands.command()
+    @commands.cooldown(1,5, commands.BucketType.user)
     async def meme(self, ctx):
         subreddit = r.subreddit("dankmemes").hot() #sorting r/dankmemes from hot
         post = random.randint(1, 100)
@@ -36,7 +38,11 @@ class memes(commands.Cog):
         embed.set_image(url = url)
         await ctx.send(embed=embed)
         
-
+            
+                
+                
+                
+                
 def setup(bot):
     bot.add_cog(memes(bot))
 
