@@ -8,7 +8,7 @@ class CACHE(object):
         self.cache = {}
         self.size = 40
         
-    def __iter__(self):
+    def __iter__(self): # <= __iter__ returns non-iterator
         return self.cache
 
 class TRACKER(object):
@@ -68,7 +68,7 @@ class TRACKER(object):
             return
         
     async def GET_INVITER(self, member):
-        invited_by = None
+        invited_by = None # <= Unused variable
         invs = {}
         try:
             new_invites = await member.guild.invites()
@@ -90,6 +90,6 @@ class TRACKER(object):
                                 cached_invite_list.append(new_invite)
                                 self.__cache.size = sys.getsizeof(self.__cache.cache)
                                 return new_invite_key
-                                break
+                            
         else:
             return None

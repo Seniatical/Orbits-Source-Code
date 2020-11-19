@@ -62,7 +62,7 @@ class help(commands.Cog):
             for cmd in next_commands:
                 desc = cmd.short_doc or cmd.description
                 signature = self.get_command_signature(cmd, ctx)
-                subcommand = "Has subcommands" if hasattr(cmd, "all_commands") else ""
+                subcommand = "" if hasattr(cmd, "all_commands") else ""
                 
                 commands_entry += (
                     f"• **__{cmd.name}__**\n```\n{signature}\n```\n{desc}\n"
