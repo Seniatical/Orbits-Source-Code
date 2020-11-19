@@ -90,6 +90,6 @@ class TRACKER(object):
                                 cached_invite_list.append(new_invite)
                                 self.__cache.size = sys.getsizeof(self.__cache.cache)
                                 return new_invite_key
-                                break #<= Unreachable code
+                            
         else:
             return None
