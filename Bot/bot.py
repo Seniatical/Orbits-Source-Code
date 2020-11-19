@@ -17,6 +17,10 @@ intents = discord.Intents.all()
 PREFIX = '?'
 secret = json.load(open(cwd+'/configs/secret.json'))
 
+def GETCHANNEL(guild, category):
+    channel = 777947981324353590
+    return channel
+
 class Orbit(commands.AutoShardedBot):
     def __init__(self):
         super().__init__(
@@ -69,7 +73,9 @@ class Orbit(commands.AutoShardedBot):
         await self.TRACKER.REMOVE_INVITE(invite)
         """^You forgot an S TRACKER.REMOVE_INVITE(S)?"""
     async def on_member_join(self, member):
-        await self.TRACKER.GET_INVITER(member)
+        x = await self.TRACKER.GET_INVITER(member)
+        channel = GETCHANNEL(member.guild, 'on_join')
+        await channel.send('> **{}** has been invited by **{}**'.format(member, x))
         
 if __name__ == '__main__':
     bot = Orbit()
