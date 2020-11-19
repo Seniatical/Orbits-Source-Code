@@ -27,6 +27,7 @@ class reddit(commands.Cog):
     async def reddit(self, ctx, sub=None):
         if sub == None:
             return await ctx.send('Give a subreddit name!')
+            ''' Made the program abit more robust! '''
         subreddit = r.subreddit(sub).hot()
         post = random.randint(1, 100)
         for x in range(0, post):
