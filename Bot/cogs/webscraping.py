@@ -22,12 +22,12 @@ class Webscraping(commands.Cog):
         
 
 
-    @commands.command(description="Dankest of them memes")
+    @commands.command(aliases=["red", "r"], desc="Surf subreddits")
     @commands.cooldown(1,5,commands.BucketType.user)
     async def reddit(self, ctx, sub=None):
         if sub == None:
           return await ctx.send('Give a subreddit name!,\n `eg: ?reddit wholesome`')
-            ''' Made the program abit more robust! '''
+        ''' Made the program abit more robust! '''
         subreddit = r.subreddit(sub).hot()
         post = random.randint(1, 100)
         for x in range(0, post):
