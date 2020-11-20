@@ -16,7 +16,7 @@ r = praw.Reddit(client_id = secret['reddit']['client_id'],
                 user_agent = secret['reddit']['user_agent'])
 """PRAW stuff"""
 
-class reddit(commands.Cog):
+class Webscraping(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
@@ -55,4 +55,4 @@ class reddit(commands.Cog):
             await ctx.send(embed = embed)
             
 def setup(bot):
-    bot.add_cog(reddit(bot))
+    bot.add_cog(Webscraping(bot))
