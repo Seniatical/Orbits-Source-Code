@@ -26,7 +26,7 @@ class reddit(commands.Cog):
     @commands.cooldown(1,5,commands.BucketType.user)
     async def reddit(self, ctx, sub=None):
         if sub == None:
-            return await ctx.send('Give a subreddit name!')
+          return await ctx.send('Give a subreddit name!,\n `eg: ?reddit wholesome`')
             ''' Made the program abit more robust! '''
         subreddit = r.subreddit(sub).hot()
         post = random.randint(1, 100)
