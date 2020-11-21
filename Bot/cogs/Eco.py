@@ -115,7 +115,7 @@ async def sell_this(user,item_name,amount,price = None):
 
         users = await get_bank_data(user)
 
-        bal = await update_bank(user)
+        bal = await update_bank(user) 
 
 
         try:
@@ -131,7 +131,7 @@ async def sell_this(user,item_name,amount,price = None):
                     users[str(user.id)]["bag"][index]["amount"] = new_amt
                     t = 1
                 break
-                index+=1 
+            index+=1 
             if t == None:
                 return [False,3]
         except:
@@ -182,7 +182,7 @@ class ECO(commands.Cog):
         users[str(user.id)]["wallet"] += earnings
 
         with open("bank.json", "w") as f:
-            users = json.dump(users,f )
+            json.dump(users,f )
             return
 
 
@@ -204,7 +204,7 @@ class ECO(commands.Cog):
             await ctx.send("You Adding Negative Moneys???")
             return
 
-        await dupdate_bank(ctx.author,amount,)
+        await update_bank(ctx.author,amount,)
         await update_bank(ctx.author,-1*amount,"bank")
 
         await ctx.send(f"You Withdrew {amount} Coins!")
@@ -274,7 +274,7 @@ class ECO(commands.Cog):
             await ctx.send(f"{member} Has Less Than 500 Coins They Are Not Worth It")
             return
 
-            amount = int(amount)
+        amount = int(amount)
 
 
         await update_bank(ctx.author,earnings)
@@ -406,7 +406,7 @@ class ECO(commands.Cog):
         index = 1
         for amt in total:
             id_ = leader_board[amt]
-            member = client.get_user(id_)
+            member = ctx.get_user(id_)
             name = member.name
             em.add_field(name = f"{index}. {name}" , value = f"{amt}",  inline = False)
             if index == x:
@@ -417,7 +417,7 @@ class ECO(commands.Cog):
         await ctx.send(embed = em)
 
 
-    @command.cog.listener()
+    @commands.Cog.listener()
     async def on_command_error(self,ctx,error):
         if isinstance(error,commands.MissingPermissions):
             await ctx.send("You Can't Do That ;-;")
