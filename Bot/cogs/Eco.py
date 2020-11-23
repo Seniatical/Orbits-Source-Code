@@ -417,21 +417,5 @@ class ECO(commands.Cog):
         await ctx.send(embed = em)
 
 
-    @commands.Cog.listener()
-    async def on_command_error(self,ctx,error):
-        if isinstance(error,commands.MissingPermissions):
-            await ctx.send("You Can't Do That ;-;")
-            await ctx.message.delete()
-        elif isinstance(error,commands.CommandNotFound):
-            await ctx.send("That's Not A Command Sily")
-        elif isinstance(error,commands.MissingRequiredArgument):
-            await ctx.send("Please Enter All The Args")
-        elif isinstance(error, commands.CommandOnCooldown):
-            msg = '**Still on cooldown**, please try again in {:.2f}s'.format(error.retry_after)
-            await ctx.send(msg)
-        else:
-            raise error
-
-
 def setup(bot):
     bot.add_cog(ECO(bot))
