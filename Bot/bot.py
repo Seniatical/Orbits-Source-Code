@@ -53,6 +53,19 @@ class Orbit(commands.AutoShardedBot):
         
     async def on_connect(self):
         print('{} has connected to discords endpoint.'.format(self.user))
+
+    async def close(self):
+        print("Closing on keyboard interrupt...")
+        await self.shutdown()
+
+    async def on_connect(self):
+        print(f" Connected to Discord (latency: {self.latency*1000:,.0f} ms).")
+
+    async def on_resumed(self):
+        print("Bot resumed.")
+
+    async def on_disconnect(self):
+        print("Bot disconnected.")
         
     '''
     INVITE TRACKING SECTION
