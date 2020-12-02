@@ -56,12 +56,6 @@ class Orbit(commands.AutoShardedBot):
 
     async def on_connect(self):
         print(f" Connected to Discord (latency: {self.latency*1000:,.0f} ms).")
-
-    async def on_resumed(self):
-        print("Bot resumed.")
-
-    async def on_disconnect(self):
-        print("Bot disconnected.")
         
     '''
     INVITE TRACKING SECTION
