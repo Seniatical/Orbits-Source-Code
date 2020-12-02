@@ -281,7 +281,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
     async def connect_command(self, ctx, *, channel: t.Optional[discord.VoiceChannel]):
         player = self.get_player(ctx)
         channel = await player.connect(ctx, channel)
-        await ctx.send(f"Connected to {channel.name}.")
+        await ctx.send(f"Connected to {channel.name}. :wink:")
 
     @connect_command.error
     async def connect_command_error(self, ctx, exc):
@@ -348,7 +348,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         await player.stop()
         await ctx.send("Playback stopped. :pleading_face:")
 
-    @commands.command(name="next", aliases=["skip"])
+    @commands.command(name="next", aliases=["skip","s"])
     async def next_command(self, ctx):
         player = self.get_player(ctx)
 
@@ -383,7 +383,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         elif isinstance(exc, NoPreviousTracks):
             await ctx.send("There are no previous tracks in the queue. :sob:")
 
-    @commands.command(name="shuffle")
+    @commands.command(name="shuffle",aliases=["scramble"])
     async def shuffle_command(self, ctx):
         player = self.get_player(ctx)
         player.queue.shuffle()
@@ -394,14 +394,14 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         if isinstance(exc, QueueIsEmpty):
             await ctx.send("The queue could not be shuffled as it is currently empty. :cry:")
 
-    @commands.command(name="repeat")
+    @commands.command(name="repeat",aliases=["loop","l"])
     async def repeat_command(self, ctx, mode: str):
         if mode not in ("none", "1", "all"):
             raise InvalidRepeatMode
 
         player = self.get_player(ctx)
         player.queue.set_repeat_mode(mode)
-        await ctx.send(f"The repeat mode has been set to {mode}.")
+        await ctx.send(f"The repeat mode has been set to {mode}. :disguised_face: ")
 
     @commands.command(name="queue")
     async def queue_command(self, ctx, show: t.Optional[int] = 10):
